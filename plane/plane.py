@@ -1,7 +1,7 @@
 from math import inf
 from typing import Union
 
-from .exeptions import OutOfPlane, ImpossibleMove
+from .exeptions import OutOfPlane, ImpossibleMove, WrongGeometry
 from .geometrics import TAXI_CUB_GEOMETRY
 
 Point = tuple[int, int]
@@ -16,7 +16,7 @@ class Plane:
             geometry = TAXI_CUB_GEOMETRY
 
         if 'distance' not in geometry.keys() or 'moving_rules' not in geometry.keys():
-            raise NotImplemented('The geometry must has \'distance\' and \'moving_rules\' keys')
+            raise WrongGeometry('The geometry must has \'distance\' and \'moving_rules\' keys')
         self._geometry = geometry
         self._moving_rules = geometry['moving_rules']
         self._distance_func = geometry['distance']
@@ -67,7 +67,7 @@ class Plane:
         try:
             move_direction = self._moving_rules[move_direction_raw_value]
         except KeyError:
-            raise ImpossibleMove('Impossible move for current rules: ', from_p, to_p, self._moving_rules)
+            raise ImpossibleMove(f'Impossible move for current rules: {from_p} -> {to_p}, rules: {self._moving_rules}')
         return move_direction
 
     def convert_path_to_commands(self, path: list) -> list:
