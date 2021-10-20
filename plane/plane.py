@@ -97,7 +97,3 @@ class Plane:
                         paths_map[neighbour] = cur_vertex
                 explored.add(cur_vertex)
         return None
-
-
-if __name__ == '__main__':
-    pass

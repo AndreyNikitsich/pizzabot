@@ -26,6 +26,3 @@ def point(string: str) -> tuple[int, int]:
 parser = argparse.ArgumentParser(description='Pizzabot program')
 parser.add_argument('field_size', type=field_size, help='A string which represents field size looks like \'5x5\'')
 parser.add_argument('points', type=point, nargs='+', help='List of delivery points. E.x. (0,1) (0,2) ...')
-
-if __name__ == '__main__':
-    pass
