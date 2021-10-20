@@ -3,8 +3,6 @@ from plane import Plane
 from cmd import parser
 
 DROP_PIZZA = 'D'
-WAIT_FOR_PAYMENT = 'WP'
-ANOTHER_ACTION_IN_DELIVERY_POINT = 'SOMETHING'
 
 
 def build_route(plane, delivery_points_with_actions, start_point=(0, 0)):
