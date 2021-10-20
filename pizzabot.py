@@ -14,7 +14,7 @@ def build_route(plane, delivery_points_with_actions, start_point=(0, 0)):
         point_1, action_1 = route_points[i - 1]
         point_2, action_2 = route_points[i]
         path = plane.bfs_path(point_1, point_2)
-        commands += plane.path_to_commands(path)
+        commands += plane.convert_path_to_commands(path)
         commands += action_2
     return commands
 

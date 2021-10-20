@@ -22,27 +22,31 @@ class Plane:
         self._moving_rules = geometry['moving_rules']
         self._distance_func = geometry['distance']
 
-    def contain(self, point: Point) -> bool:
-        """Checks whether a point is contained in the plane"""
+    def contains(self, point: Point) -> bool:
+        """Checks whether a point is contained in the plane."""
+
         x, y = point
         return 0 <= x < self._size_x and 0 <= y < self._size_y
 
-    def get_point_neighbours(self, point: Point) -> list:
-        """Returns valid neighbours for point. Valid ones are those that are contained on the plane"""
-        if not self.contain(point):
+    def get_neighbours_point(self, point: Point) -> list:
+        """Returns valid neighbours for point. Valid ones are those that are contained on the plane."""
+
+        if not self.contains(point):
             raise OutOfPlane(point)
 
         neighbours = [(self.__add_points(point, rule)) for rule in self._moving_rules.keys()]
-        valid_neighbours = filter(self.contain, neighbours)
+        valid_neighbours = filter(self.contains, neighbours)
         return list(valid_neighbours)
 
-    def distance(self, first: Point, second: Point) -> Union[int, float]:
-        """Returns distance between 2 point depending on the specified geometry"""
-        if not self.contain(first):
+    def get_distance_between_points(self, first: Point, second: Point) -> Union[int, float]:
+        """Returns distance between 2 point depending on the specified geometry."""
+
+        if not self.contains(first):
             raise OutOfPlane(first)
 
-        if not self.contain(second):
+        if not self.contains(second):
             raise OutOfPlane(second)
+
         return self._distance_func(first, second)
 
     @staticmethod
@@ -57,8 +61,9 @@ class Plane:
         x_second, y_second = second
         return x_first + x_second, y_first + y_second
 
-    def __move_direction(self, from_p: Point, to_p: Point) -> Point:
-        """Returns the direction of movement for moving from one point to another"""
+    def __get_move_direction(self, from_p: Point, to_p: Point) -> Point:
+        """Returns the direction of movement for moving from one point to another."""
+
         move_direction_raw_value = self.__subtract_points(to_p, from_p)
         try:
             move_direction = self._moving_rules[move_direction_raw_value]
@@ -66,16 +71,18 @@ class Plane:
             raise ImpossibleMove('Impossible move for current rules: ', from_p, to_p, self._moving_rules)
         return move_direction
 
-    def path_to_commands(self, path: list) -> list:
-        """Converts a sequence of points into commands"""
+    def convert_path_to_commands(self, path: list) -> list:
+        """Returns a sequence of commands to move from the start point of the path to the end of the path."""
+
         commands = []
         for i in range(1, len(path)):
-            direction = self.__move_direction(path[i - 1], path[i])
+            direction = self.__get_move_direction(path[i - 1], path[i])
             commands.append(direction)
         return commands
 
     def bfs_path(self, start: Point, end: Point) -> Union[list, None]:
-        """Standard Breadth First Search algorithm. Returns path from one point to another"""
+        """Returns path from one point to another."""
+
         queue = deque()
         queue.append(start)
         explored = set()
@@ -91,7 +98,7 @@ class Plane:
                     prev_vertex = paths_map[prev_vertex]
                 return list(path)
             else:
-                for neighbour in self.get_point_neighbours(cur_vertex):
+                for neighbour in self.get_neighbours_point(cur_vertex):
                     if neighbour not in explored and neighbour not in queue:
                         queue.append(neighbour)
                         paths_map[neighbour] = cur_vertex
