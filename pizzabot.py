@@ -1,6 +1,6 @@
 import plane
 from plane import Plane
-from cmd import parser
+from cmd import CMDParser
 
 DROP_PIZZA = 'D'
 
@@ -25,6 +25,7 @@ def optimal_order(point_list):
 
 if __name__ == '__main__':
     try:
+        parser = CMDParser.get_parser()
         args = parser.parse_args()
         size_x, size_y = args.field_size
         pl = Plane(size_x, size_y)
