@@ -1,5 +1,5 @@
 import plane
-from plane import Plane
+from plane import Plane, bfs_path
 from cmd import CMDParser
 
 DROP_PIZZA = 'D'
@@ -11,7 +11,7 @@ def build_route(plane, delivery_points_with_actions, start_point=(0, 0)):
     for i in range(1, len(route_points)):
         point_1, action_1 = route_points[i - 1]
         point_2, action_2 = route_points[i]
-        path = plane.bfs_path(point_1, point_2)
+        path = bfs_path(plane, point_1, point_2)
         commands += plane.convert_path_to_commands(path)
         commands += action_2
     return commands
