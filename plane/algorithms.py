@@ -7,10 +7,10 @@ def bfs_path(plane: Plane, start: Point, end: Point) -> Union[list, None]:
     """Returns path from one point to another."""
 
     if not plane.contains(start):
-        raise OutOfPlane(start)
+        raise OutOfPlane(start, plane)
 
     if not plane.contains(end):
-        raise OutOfPlane(end)
+        raise OutOfPlane(end, plane)
 
     queue = deque()
     queue.append(start)

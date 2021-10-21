@@ -31,7 +31,7 @@ class Plane:
         """Returns valid neighbours for point. Valid ones are those that are contained on the plane."""
 
         if not self.contains(point):
-            raise OutOfPlane(f'{point} outside the plane {self._size_x}x{self._size_y}')
+            raise OutOfPlane(point, self)
 
         neighbours = [(self.__add_points(point, rule)) for rule in self._moving_rules.keys()]
         valid_neighbours = filter(self.contains, neighbours)
@@ -41,10 +41,10 @@ class Plane:
         """Returns distance between 2 point depending on the specified geometry."""
 
         if not self.contains(first):
-            raise OutOfPlane(f'{first} outside the plane {self._size_x}x{self._size_y}')
+            raise OutOfPlane(first, self)
 
         if not self.contains(second):
-            raise OutOfPlane(f'{second} outside the plane {self._size_x}x{self._size_y}')
+            raise OutOfPlane(first, self)
 
         return self._distance_func(first, second)
 
@@ -78,3 +78,6 @@ class Plane:
             direction = self.__get_move_direction(path[i - 1], path[i])
             commands.append(direction)
         return commands
+
+    def __str__(self):
+        return f'Plane {self._size_x}x{self._size_y}'

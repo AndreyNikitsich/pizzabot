@@ -22,7 +22,7 @@ class CMDParser:
             x, y = int(match_obj.group(1)), int(match_obj.group(2))
             return x, y
         else:
-            raise argparse.ArgumentTypeError()
+            raise argparse.ArgumentTypeError(f'Invalid point format {string}.')
 
     @classmethod
     def __field_size_type(cls, string: str) -> tuple[int, int]:
@@ -31,4 +31,4 @@ class CMDParser:
             size_x, size_y = int(match_obj.group(1)), int(match_obj.group(2))
             return size_x, size_y
         else:
-            raise argparse.ArgumentTypeError()
+            raise argparse.ArgumentTypeError(f'Invalid field_size format {string}.')
