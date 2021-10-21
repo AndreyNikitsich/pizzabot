@@ -25,5 +25,5 @@ if __name__ == '__main__':
         print(e)
     except Exception as e:
         with open('log.txt', 'w', encoding='utf-8') as f:
-            traceback.print_exc(f)
-        print('Ooops, something went wrong. See log file to find out the details.')
+            traceback.print_exc(file=f)
+        print('Ooops, something went wrong. See log.txt file to find out the details.')
