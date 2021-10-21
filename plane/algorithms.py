@@ -1,12 +1,16 @@
 from collections import deque
 from typing import Union
-from .plane import Plane
-
-Point = tuple[int, int]
+from .plane import Plane, OutOfPlane, Point
 
 
 def bfs_path(plane: Plane, start: Point, end: Point) -> Union[list, None]:
     """Returns path from one point to another."""
+
+    if not plane.contains(start):
+        raise OutOfPlane(start)
+
+    if not plane.contains(end):
+        raise OutOfPlane(end)
 
     queue = deque()
     queue.append(start)
