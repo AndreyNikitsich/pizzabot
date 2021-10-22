@@ -27,7 +27,7 @@ class Plane:
         x, y = point
         return 0 <= x < self._size_x and 0 <= y < self._size_y
 
-    def get_neighbours_point(self, point: Point) -> list:
+    def get_neighbours_point(self, point: Point) -> list[Point]:
         """Returns valid neighbours for point. Valid ones are those that are contained on the plane."""
 
         if not self.contains(point):
