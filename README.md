@@ -17,7 +17,7 @@ The robot always starts its journey from the point `(0,0)` and passes through al
 
 ## How to run ?
 After downloading, go to the root folder of the project and open the console in it, then run `pizzabot.py` is like a regular python script with arguments:
-- For macOS and Linux: `python3 pizzabot.py [args]`
+- For macOS and Linux: `python3 pizzabot.py [args]`. It is important to pass the list of delivery points as a string!
 - For Windows: `python pizzabot.py [args]`
 ## Output
 In case of successful execution of the program, a line containing commands for the robot is output to the console. For the previous example, it will look like this: `DNEED`
