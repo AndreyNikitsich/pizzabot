@@ -1,6 +1,8 @@
 # Pizzabot Instructor
 ## Version
 1.0.0
+## Requirements
+Python 3.9
 ## Description  
 Pizzabot is a robot that delivers pizza to the houses in the neighborhood. It sees this world as a grid, the nodes of which are houses. The task of this program is to instruct the robot to deliver pizza to all the houses marked on the grid.  
 ## Input
@@ -17,9 +19,11 @@ The robot always starts its journey from the point `(0,0)` and passes through al
 
 ## How to run ?
 After downloading, go to the root folder of the project and open the console in it, then run `pizzabot.py` is like a regular python script with arguments:
-- For macOS and Linux: `python3 pizzabot.py [args]`. It is important to pass the list of delivery points as a string!
-- For Windows: `python pizzabot.py [args]`
+- For macOS and Linux: `python3 pizzabot.py "args"`
+- For Windows: `python pizzabot.py "args"`  
+
+Quotation marks are required!
 ## Output
 In case of successful execution of the program, a line containing commands for the robot is output to the console. For the previous example, it will look like this: `DNEED`
-## To pass the test
-To pass the test, enter this line as input data `5x5 (0, 0) (1, 3) (4, 4) (4, 2) (4, 2) (0, 1) (3, 2) (2, 3) (4, 1)`. The result should be `DNNNEDNEEEDSSDDSWWWWDNEEEDNWDSSEED`.
+## Challenge
+To complete the challenge, enter this line as input data `5x5 (0, 0) (1, 3) (4, 4) (4, 2) (4, 2) (0, 1) (3, 2) (2, 3) (4, 1)`. The result should be `DNNNEDNEEEDSSDDSWWWWDNEEEDNWDSSEED`.
