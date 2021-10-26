@@ -3,21 +3,36 @@ import re
 
 
 class CMDParser:
-    FIELD_SIZE_2D_RE = re.compile(r'(\d+)[xX](\d+)')
-    POINT_2D_RE = re.compile(r'\((\d+)\,(\d+)\)')
+    FIELD_SIZE_2D_RE = re.compile(r'(\d+)x(\d+)')
+    POINT_2D_RE = re.compile(r'\((\d+),\s?(\d+)\)')
 
-    @classmethod
-    def get_parser(cls) -> argparse.ArgumentParser:
+    def __init__(self):
         parser = argparse.ArgumentParser(description='Pizzabot program')
-        parser.add_argument('field_size', type=cls.__field_size_type,
-                            help='A string which represents field size looks like \'5x5\'')
-        parser.add_argument('points', type=cls.__point_type, nargs='+',
-                            help='List of delivery points. E.x. (0,1) (0,2) ...')
-        return parser
+        parser.add_argument('data', type=self.__parse_input_data,
+                            help='Input string looks like: "5x5 (1,2) (3,4)". Quotation marks are required')
+        args = parser.parse_args()
+        self.field_size, self.points = args.data
 
     @classmethod
-    def __point_type(cls, string: str) -> tuple[int, int]:
-        match_obj = re.match(cls.POINT_2D_RE, string)
+    def __parse_input_data(cls, string: str):
+        string_with_delimiters = string.replace(' (', ';(')
+        args = string_with_delimiters.split(';')
+
+        field_size_string = args[0]
+        if not field_size_string:
+            raise argparse.ArgumentTypeError('Field size can\'t be empty!')
+        field_size = cls.__convert_string_to_field_size(field_size_string)
+
+        points_as_strings = args[1:]
+        if not points_as_strings:
+            raise argparse.ArgumentTypeError('You must input at least one delivery point!')
+        points = [cls.__convert_string_to_point(point) for point in points_as_strings]
+
+        return field_size, points
+
+    @classmethod
+    def __convert_string_to_point(cls, string: str) -> tuple[int, int]:
+        match_obj = re.fullmatch(cls.POINT_2D_RE, string)
         if match_obj is not None:
             x, y = int(match_obj.group(1)), int(match_obj.group(2))
             return x, y
@@ -25,8 +40,8 @@ class CMDParser:
             raise argparse.ArgumentTypeError(f'Invalid point format {string}.')
 
     @classmethod
-    def __field_size_type(cls, string: str) -> tuple[int, int]:
-        match_obj = re.match(cls.FIELD_SIZE_2D_RE, string)
+    def __convert_string_to_field_size(cls, string: str) -> tuple[int, int]:
+        match_obj = re.fullmatch(cls.FIELD_SIZE_2D_RE, string)
         if match_obj is not None:
             size_x, size_y = int(match_obj.group(1)), int(match_obj.group(2))
             return size_x, size_y

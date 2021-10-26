@@ -8,11 +8,10 @@ DROP_PIZZA = 'D'
 
 if __name__ == '__main__':
     try:
-        parser = CMDParser.get_parser()
-        args = parser.parse_args()
-        size_x, size_y = args.field_size
+        parser = CMDParser()
+        size_x, size_y = parser.field_size
         plane = Plane(size_x, size_y)
-        delivery_points = get_optimal_points_order(args.points)
+        delivery_points = get_optimal_points_order(parser.points)
         delivery_points_with_actions = [(point, [DROP_PIZZA]) for point in delivery_points]
         commands = build_route(plane, delivery_points_with_actions)
         output = convert_commands_to_output_format(commands)
