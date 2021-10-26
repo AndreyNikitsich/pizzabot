@@ -9,7 +9,7 @@ class CMDParser:
     def __init__(self):
         parser = argparse.ArgumentParser(description='Pizzabot program')
         parser.add_argument('data', type=self.__parse_input_data,
-                            help='Input string looks like: "5x5 (1,2) (3,4)". Quotation marks are required')
+                            help='The input string should look like this: \"5x5 (1,2) (3,4)\". Quotation marks are required.')
         args = parser.parse_args()
         self.field_size, self.points = args.data
 
