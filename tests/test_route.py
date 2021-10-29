@@ -1,5 +1,5 @@
 from unittest import TestCase, main
-from plane.plane import Plane
+from src.plane import Plane
 from utils.route import build_route
 
 

@@ -1,6 +1,6 @@
 import traceback
 
-from plane import Plane, OutOfPlane, ImpossibleMove, WrongGeometry
+from src import Plane, OutOfPlane, ImpossibleMove, WrongGeometry
 from utils.cmd import CMDParser
 from utils.route import build_route, get_optimal_points_order, convert_commands_to_output_format
 

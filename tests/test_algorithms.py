@@ -1,7 +1,7 @@
 from unittest import TestCase, main
-from plane.plane import Plane
-from plane.exeptions import OutOfPlane
-from plane.algorithms import bfs_path
+from src.plane import Plane
+from src.exeptions import OutOfPlane
+from src.algorithms import bfs_path
 
 
 class TestAlgorithms(TestCase):

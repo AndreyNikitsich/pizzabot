@@ -1,6 +1,6 @@
 from unittest import TestCase, main
-from plane.plane import Plane
-from plane.exeptions import WrongGeometry, ImpossibleMove, OutOfPlane
+from src.plane import Plane
+from src.exeptions import WrongGeometry, ImpossibleMove, OutOfPlane
 
 
 class TestPlane(TestCase):
