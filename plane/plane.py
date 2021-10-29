@@ -75,6 +75,13 @@ class Plane:
 
         commands = []
         for i in range(1, len(path)):
+
+            if not self.contains(path[i - 1]):
+                raise OutOfPlane(path[i - 1], self)
+
+            if not self.contains(path[i]):
+                raise OutOfPlane(path[i], self)
+
             direction = self.__get_move_direction(path[i - 1], path[i])
             commands.append(direction)
         return commands
