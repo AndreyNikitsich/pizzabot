@@ -1,4 +1,4 @@
-from src import bfs_path, Point, Plane
+from plane import bfs_path, Point, Plane
 
 Point_with_action = tuple[Point, list[str]]
 

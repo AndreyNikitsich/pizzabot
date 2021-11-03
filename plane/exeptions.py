@@ -6,7 +6,7 @@ class ImpossibleMove(Exception):
 
 
 class OutOfPlane(Exception):
-    """Rises when something is done with a point that is outside the src."""
+    """Rises when something is done with a point that is outside the plane."""
 
     def __init__(self, point, plane):
         message = f'Point {point} is outside the {plane}'

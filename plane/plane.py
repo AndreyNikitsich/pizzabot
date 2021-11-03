@@ -22,13 +22,13 @@ class Plane:
         self._distance_func = geometry['distance']
 
     def contains(self, point: Point) -> bool:
-        """Checks whether a point is contained in the src."""
+        """Checks whether a point is contained in the plane."""
 
         x, y = point
         return 0 <= x < self._size_x and 0 <= y < self._size_y
 
     def get_neighbours_point(self, point: Point) -> list[Point]:
-        """Returns valid neighbours for point. Valid ones are those that are contained on the src."""
+        """Returns valid neighbours for point. Valid ones are those that are contained on the plane."""
 
         if not self.contains(point):
             raise OutOfPlane(point, self)
