@@ -2,7 +2,7 @@ import traceback
 
 from plane import Plane, OutOfPlane, ImpossibleMove, WrongGeometry
 from utils.cmd import CMDParser
-from utils.route import build_route, get_optimal_points_order, convert_commands_to_output_format
+from utils.route import build_route, get_optimal_points_order, show_commands
 
 DROP_PIZZA = 'D'
 
@@ -14,8 +14,7 @@ if __name__ == '__main__':
         delivery_points = get_optimal_points_order(parser.points)
         delivery_points_with_actions = [(point, [DROP_PIZZA]) for point in delivery_points]
         commands = build_route(plane, delivery_points_with_actions)
-        output = convert_commands_to_output_format(commands)
-        print(output)
+        show_commands(commands)
     except WrongGeometry as e:
         print(e)
     except ImpossibleMove as e:

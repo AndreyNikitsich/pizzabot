@@ -27,7 +27,8 @@ def get_optimal_points_order(point_list: list[Point]) -> list:
     return point_list
 
 
-def convert_commands_to_output_format(commands_list: list[str]) -> str:
-    """Returns a string with a sequence of commands with the required formatting."""
-
-    return ''.join(commands_list)
+def show_commands(commands_list: list[str]) -> None:
+    """Outputs a list of commands to the console with the required formatting."""
+    
+    output_string = ''.join(commands_list)
+    print(output_string)
