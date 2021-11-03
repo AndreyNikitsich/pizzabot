@@ -24,12 +24,12 @@ class Plane:
         self._distance_func = geometry['distance']
 
     def contains(self, point: Point) -> bool:
-        """Checks whether a point is contained in the plane."""
+        """Check whether a point is contained in the plane."""
         x, y = point
         return 0 <= x < self._size_x and 0 <= y < self._size_y
 
     def get_neighbours_point(self, point: Point) -> list[Point]:
-        """Returns valid neighbours for point. Valid ones are those that are contained on the plane."""
+        """Return valid neighbours for point. Valid ones are those that are contained on the plane."""
         if not self.contains(point):
             raise OutOfPlane(point, self)
 
@@ -38,7 +38,7 @@ class Plane:
         return list(valid_neighbours)
 
     def get_distance_between_points(self, first: Point, second: Point) -> Union[int, float]:
-        """Returns distance between 2 point depending on the specified geometry."""
+        """Return distance between 2 point depending on the specified geometry."""
         if not self.contains(first):
             raise OutOfPlane(first, self)
 
@@ -60,7 +60,7 @@ class Plane:
         return x_first + x_second, y_first + y_second
 
     def __get_move_direction(self, from_p: Point, to_p: Point) -> Point:
-        """Returns the direction of movement for moving from one point to another."""
+        """Return the direction of movement for moving from one point to another."""
         move_direction_raw_value = self.__subtract_points(to_p, from_p)
         try:
             move_direction = self._moving_rules[move_direction_raw_value]
@@ -69,7 +69,7 @@ class Plane:
         return move_direction
 
     def convert_path_to_commands(self, path: list) -> list:
-        """Returns a sequence of commands to move from the start point of the path to the end of the path."""
+        """Return a sequence of commands to move from the start point of the path to the end of the path."""
         commands = []
         for i in range(1, len(path)):
 

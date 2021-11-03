@@ -4,7 +4,7 @@ from utils.delivery_point import DeliveryPoint
 
 def build_route(plane: Plane, delivery_points_with_actions: list[DeliveryPoint],
                 start_point: DeliveryPoint = DeliveryPoint()) -> list:
-    """Returns a list of commands required to move from the starting point through all delivery points."""
+    """Return a list of commands required to move from the starting point through all delivery points."""
     route_points = [start_point] + delivery_points_with_actions
     commands = []
     for i in range(1, len(route_points)):
@@ -17,7 +17,7 @@ def build_route(plane: Plane, delivery_points_with_actions: list[DeliveryPoint],
 
 
 def get_optimal_points_order(point_list: list[Point]) -> list:
-    """Returns a sequence of points in the order that provides the shortest path length."""
+    """Return a sequence of points in the order that provides the shortest path length."""
 
     # we must solve the TSP problem to find shortest path between points.
     # There are so many methods to do this, but implementing one of them is out of scope, I think ;)
@@ -26,6 +26,6 @@ def get_optimal_points_order(point_list: list[Point]) -> list:
 
 
 def show_commands(commands_list: list[str]) -> None:
-    """Outputs a list of commands to the console with the required formatting."""
+    """Output a list of commands to the console with the required formatting."""
     output_string = ''.join(commands_list)
     print(output_string)
