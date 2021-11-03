@@ -8,6 +8,7 @@ class TestAlgorithms(TestCase):
 
     def test_bfs_path_with_valid_points(self):
         """Valid point is a point that is on the plane."""
+
         plane = Plane(5, 5)
         start_point = (0, 0)
         end_point = (2, 1)

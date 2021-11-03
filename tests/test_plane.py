@@ -26,16 +26,19 @@ class TestPlane(TestCase):
 
     def test_contains_with_valid_point(self):
         """Valid point is a point that is on the plane."""
+
         point = (1, 2)
         self.assertEqual(self.plane.contains(point), True)
 
     def test_contains_with_invalid_point(self):
         """Invalid point is a point that is not on the plane."""
+
         point = (11, 21)
         self.assertEqual(self.plane.contains(point), False)
 
     def test_get_neighbours_point_with_valid_point(self):
         """Valid point is a point that is on the plane."""
+
         point = (2, 2)
         expected_neighbours = [(3, 2), (1, 2), (2, 3), (2, 1)]
         actual_neighbours = self.plane.get_neighbours_point(point)
@@ -49,6 +52,7 @@ class TestPlane(TestCase):
 
     def test_convert_path_to_commands_with_average_path(self):
         """Average path is a path consisting of more than one point."""
+
         path = [(0, 1), (0, 2), (1, 2)]
         expected_commands = ['N', 'E']
         actual_commands = self.plane.convert_path_to_commands(path)

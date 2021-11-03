@@ -8,11 +8,16 @@ DROP_PIZZA = 'D'
 
 if __name__ == '__main__':
     try:
+        # Initializing plane
         parser = CMDParser()
         size_x, size_y = parser.field_size
         plane = Plane(size_x, size_y)
+
+        # Adding actions to the delivery points
         delivery_points = get_optimal_points_order(parser.points)
         delivery_points_with_actions = [(point, [DROP_PIZZA]) for point in delivery_points]
+
+        # Get and output the result
         commands = build_route(plane, delivery_points_with_actions)
         show_commands(commands)
     except WrongGeometry as e:

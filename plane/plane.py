@@ -12,11 +12,13 @@ class Plane:
     def __init__(self, size_x: int = inf, size_y: int = inf, geometry: dict = None):
         self._size_x = size_x
         self._size_y = size_y
+
         if geometry is None:
             geometry = TAXI_CUB_GEOMETRY
 
         if 'distance' not in geometry.keys() or 'moving_rules' not in geometry.keys():
             raise WrongGeometry('The geometry must has \'distance\' and \'moving_rules\' keys')
+
         self._geometry = geometry
         self._moving_rules = geometry['moving_rules']
         self._distance_func = geometry['distance']
