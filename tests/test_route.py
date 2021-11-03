@@ -4,7 +4,7 @@ from utils.route import build_route
 
 
 class TestRoute(TestCase):
-    def test_built_route_returns_valid_commands(self):
+    def test_built_route(self):
         plane = Plane(5, 5)
         start_point = (0, 0)
         delivery_points = [(3, 2), (3, 3), (1, 0)]

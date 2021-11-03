@@ -6,7 +6,8 @@ from src.algorithms import bfs_path
 
 class TestAlgorithms(TestCase):
 
-    def test_bfs_path_returns_valid_path_if_points_are_valid(self):
+    def test_bfs_path_with_valid_points(self):
+        """Valid point is a point that is on the plane."""
         plane = Plane(5, 5)
         start_point = (0, 0)
         end_point = (2, 1)
@@ -15,7 +16,7 @@ class TestAlgorithms(TestCase):
         actual_path = bfs_path(plane, start_point, end_point)
         self.assertIn(actual_path, possible_paths)
 
-    def test_bfs_path_raises_error_if_point_or_points_are_out_of_plane(self):
+    def test_bfs_path_raises_out_of_plane(self):
         plane = Plane(5, 5)
         start_point = (-1, -1)
         end_point = (2, 1)
