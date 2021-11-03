@@ -59,7 +59,7 @@ class Plane:
         x_second, y_second = second
         return x_first + x_second, y_first + y_second
 
-    def __get_move_direction(self, from_p: Point, to_p: Point) -> Point:
+    def __get_move_direction(self, from_p: Point, to_p: Point) -> str:
         """Return the direction of movement for moving from one point to another."""
         move_direction_raw_value = self.__subtract_points(to_p, from_p)
         try:
@@ -68,7 +68,7 @@ class Plane:
             raise ImpossibleMove(f'Impossible move for current rules: {from_p} -> {to_p}, rules: {self._moving_rules}')
         return move_direction
 
-    def convert_path_to_commands(self, path: list) -> list:
+    def convert_path_to_commands(self, path: list) -> list[str]:
         """Return a sequence of commands to move from the start point of the path to the end of the path."""
         commands = []
         for i in range(1, len(path)):
